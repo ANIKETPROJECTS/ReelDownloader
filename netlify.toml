@@ -2,11 +2,13 @@
   command = "npm run build"
   publish = "dist/public"
 
+[build.environment]
+  NODE_VERSION = "20"
+
 [functions]
   directory = "server"
   external_node_modules = ["lightningcss", "@babel/core", "@babel/preset-typescript", "tsx", "esbuild", "instagram-url-direct"]
   node_bundler = "esbuild"
-  node_version = "20"
 
 [[redirects]]
   from = "/api/*"
