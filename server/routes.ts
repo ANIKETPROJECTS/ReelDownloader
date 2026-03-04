@@ -56,18 +56,31 @@ export async function registerRoutes(
       
       // Handle potential default export or commonjs mismatch
       let getUrl = instagramGetUrl;
-      if (typeof getUrl !== 'function' && getUrl && (getUrl as any).instagramGetUrl) {
-        getUrl = (getUrl as any).instagramGetUrl;
-      } else if (typeof getUrl !== 'function' && getUrl && (getUrl as any).default) {
-        getUrl = (getUrl as any).default;
+      // @ts-ignore
+      if (getUrl && getUrl.default) {
+        // @ts-ignore
+        getUrl = getUrl.default;
+      }
+
+      console.log("getUrl type:", typeof getUrl);
+
+      if (typeof getUrl !== 'function') {
+        console.error("instagram-url-direct is not a function. Value:", getUrl);
+        // Fallback or try to require it if we were in CJS, but we are in ESM.
+        // Some packages export an object with the function as a property
+        if (getUrl && typeof (getUrl as any).instagramGetUrl === 'function') {
+           getUrl = (getUrl as any).instagramGetUrl;
+        }
       }
 
       if (typeof getUrl !== 'function') {
-        console.error("instagram-url-direct is not a function. Value:", instagramGetUrl);
-        throw new Error("Downloader library initialization failed");
+        throw new Error("Downloader library initialization failed: not a function");
       }
 
-      const result = await (getUrl as any)(input.url);
+      const result = await (getUrl as any)(input.url).catch((e: any) => {
+        console.error("Library call failed:", e);
+        throw new Error(`Library error: ${e.message || e}`);
+      });
       
       if (!result || !result.url_list || result.url_list.length === 0) {
         return res.status(400).json({ 
