@@ -8,12 +8,25 @@ import { Readable } from "stream";
 // Use dynamic import for ESM compatibility in bundled environments
 let instagramGetUrl: any;
 async function initDownloader() {
-  if (!instagramGetUrl) {
+  if (instagramGetUrl) return instagramGetUrl;
+  
+  try {
+    console.log("Attempting to import instagram-url-direct...");
     // @ts-ignore
     const mod = await import('instagram-url-direct');
     instagramGetUrl = mod.default || mod;
+    console.log("Import successful, type:", typeof instagramGetUrl);
+    
+    // Handle different export patterns
+    if (typeof instagramGetUrl !== 'function' && instagramGetUrl && typeof instagramGetUrl.instagramGetUrl === 'function') {
+      instagramGetUrl = instagramGetUrl.instagramGetUrl;
+    }
+    
+    return instagramGetUrl;
+  } catch (err) {
+    console.error("Failed to import instagram-url-direct:", err);
+    throw err;
   }
-  return instagramGetUrl;
 }
 
 const __filename_local = ""; 
@@ -67,22 +80,13 @@ export async function registerRoutes(
       
       let getUrl = await initDownloader();
       
-      console.log("getUrl type:", typeof getUrl);
-
       if (typeof getUrl !== 'function') {
-        console.error("instagram-url-direct is not a function. Value:", getUrl);
-        // Fallback or try to require it if we were in CJS, but we are in ESM.
-        // Some packages export an object with the function as a property
-        if (getUrl && typeof (getUrl as any).instagramGetUrl === 'function') {
-           getUrl = (getUrl as any).instagramGetUrl;
-        }
-      }
-
-      if (typeof getUrl !== 'function') {
+        console.error("Downloader library is not a function. Value:", getUrl);
         throw new Error("Downloader library initialization failed: not a function");
       }
 
-      const result = await (getUrl as any)(input.url).catch((e: any) => {
+      console.log("Calling downloader with URL:", input.url);
+      const result = await getUrl(input.url).catch((e: any) => {
         console.error("Library call failed. Full error:", e);
         if (e.stack) console.error("Stack trace:", e.stack);
         throw new Error(`Library error: ${e.message || e}`);
