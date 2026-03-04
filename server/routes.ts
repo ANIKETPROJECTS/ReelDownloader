@@ -18,12 +18,15 @@ export async function registerRoutes(
       console.log(`Processing Reel URL: ${input.url}`);
       
       // Handle potential default export or commonjs mismatch
-      const getUrl = typeof instagramGetUrl === 'function' 
-        ? instagramGetUrl 
-        : (instagramGetUrl as any).default;
+      let getUrl = instagramGetUrl;
+      if (typeof getUrl !== 'function' && getUrl && (getUrl as any).instagramGetUrl) {
+        getUrl = (getUrl as any).instagramGetUrl;
+      } else if (typeof getUrl !== 'function' && getUrl && (getUrl as any).default) {
+        getUrl = (getUrl as any).default;
+      }
 
       if (typeof getUrl !== 'function') {
-        console.error("instagram-url-direct is not a function:", instagramGetUrl);
+        console.error("instagram-url-direct is not a function. Value:", instagramGetUrl);
         throw new Error("Downloader library initialization failed");
       }
 
