@@ -19,7 +19,12 @@ export async function registerRoutes(
     }
 
     try {
-      const response = await fetch(videoUrl);
+      const response = await fetch(videoUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+          'Referer': 'https://www.instagram.com/'
+        }
+      });
       if (!response.ok) throw new Error(`Failed to fetch video: ${response.statusText}`);
 
       const contentType = response.headers.get("content-type") || "video/mp4";
