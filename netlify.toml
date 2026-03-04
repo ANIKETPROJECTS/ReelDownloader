@@ -4,7 +4,6 @@
 
 [functions]
   directory = "server"
-  node_bundle = "esbuild"
   external_node_modules = ["lightningcss", "@babel/core", "@babel/preset-typescript", "tsx", "esbuild"]
 
 [[redirects]]
