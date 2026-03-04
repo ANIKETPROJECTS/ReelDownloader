@@ -46,6 +46,11 @@ async function buildAll() {
   ];
   const externals = allDeps.filter((dep) => !allowlist.includes(dep));
 
+  // Add problem dependencies to externals explicitly
+  if (!externals.includes("lightningcss")) externals.push("lightningcss");
+  if (!externals.includes("@babel/core")) externals.push("@babel/core");
+  if (!externals.includes("@babel/preset-typescript")) externals.push("@babel/preset-typescript");
+
   await esbuild({
     entryPoints: ["server/index.ts"],
     platform: "node",

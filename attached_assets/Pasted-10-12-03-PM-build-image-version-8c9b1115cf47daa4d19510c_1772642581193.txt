@@ -1,0 +1,180 @@
+10:12:03 PM: build-image version: 8c9b1115cf47daa4d19510cfee34034469213d7a (noble-new-builds)
+10:12:03 PM: buildbot version: b37d60600e9fbd0a1bcdda16d43f1897be4759fc
+10:12:03 PM: Fetching cached dependencies
+10:12:03 PM: Failed to fetch cache, continuing with build
+10:12:03 PM: Starting to prepare the repo for build
+10:12:03 PM: No cached dependencies found. Cloning fresh repo
+10:12:03 PM: git clone --filter=blob:none https://github.com/SairajKoyande1111/Reel-Downloader
+10:12:04 PM: Preparing Git Reference refs/heads/main
+10:12:06 PM: Installing dependencies
+10:12:06 PM: mise ~/.config/mise/config.toml tools: python@3.14.3
+10:12:06 PM: mise ~/.config/mise/config.toml tools: ruby@3.4.8
+10:12:06 PM: mise ~/.config/mise/config.toml tools: go@1.26.0
+10:12:06 PM: v22.22.0 is already installed.
+10:12:07 PM: Now using node v22.22.0 (npm v10.9.4)
+10:12:07 PM: Enabling Node.js Corepack
+10:12:07 PM: No npm workspaces detected
+10:12:07 PM: Installing npm packages using npm version 10.9.4
+10:12:13 PM: added 492 packages in 6s
+10:12:13 PM: npm packages installed
+10:12:14 PM: Successfully installed dependencies
+10:12:14 PM: Detected 1 framework(s)
+10:12:14 PM: "vite" at version "7.3.1"
+10:12:14 PM: Starting build script
+10:12:15 PM: Section completed: initializing
+10:12:17 PM: ​
+10:12:17 PM: Netlify Build                                                 
+10:12:17 PM: ────────────────────────────────────────────────────────────────
+10:12:17 PM: ​
+10:12:17 PM: ❯ Version
+10:12:17 PM:   @netlify/build 35.8.4
+10:12:17 PM: ​
+10:12:17 PM: ❯ Flags
+10:12:17 PM:   accountId: 692a8ecc5ae9595e33297c1b
+10:12:17 PM:   baseRelDir: true
+10:12:17 PM:   buildId: 69a860daa8c5c00008d5d6dc
+10:12:17 PM:   deployId: 69a860daa8c5c00008d5d6de
+10:12:17 PM: ​
+10:12:17 PM: ❯ Current directory
+10:12:17 PM:   /opt/build/repo
+10:12:17 PM: ​
+10:12:17 PM: ❯ Config file
+10:12:17 PM:   /opt/build/repo/netlify.toml
+10:12:17 PM: ​
+10:12:17 PM: ❯ Context
+10:12:17 PM:   production
+10:12:17 PM: ​
+10:12:17 PM: build.command from netlify.toml                               
+10:12:17 PM: ────────────────────────────────────────────────────────────────
+10:12:17 PM: ​
+10:12:17 PM: $ npm run build
+10:12:17 PM: > rest-express@1.0.0 build
+10:12:17 PM: > tsx script/build.ts
+10:12:18 PM: building client...
+10:12:18 PM: vite v7.3.1 building client environment for production...
+10:12:18 PM: transforming...
+10:12:22 PM: ✓ 2031 modules transformed.
+10:12:22 PM: rendering chunks...
+10:12:22 PM: computing gzip size...
+10:12:22 PM: ../dist/public/index.html                                         2.18 kB │ gzip:   0.84 kB
+10:12:22 PM: ../dist/public/assets/lightning_1772635445711-nXhH9Npq.png       11.27 kB
+10:12:22 PM: ../dist/public/assets/video_1772635646433-BBo_F7yQ.png           11.49 kB
+10:12:22 PM: ../dist/public/assets/insurance_1772635570218-BGOQjyf9.png       14.79 kB
+10:12:22 PM: ../dist/public/assets/facebook_(1)_1772634020519-ejnf6rkB.png    16.04 kB
+10:12:22 PM: ../dist/public/assets/twitter_1772634025574-DTBoECSh.png         17.45 kB
+10:12:22 PM: ../dist/public/assets/prohibition_1772635526816-N3I5Ei0O.png     20.68 kB
+10:12:22 PM: ../dist/public/assets/instagram_(1)_1772634012258-Dbq-n8qV.png   52.99 kB
+10:12:22 PM: ../dist/public/assets/index-nFPEQc4t.css                         93.92 kB │ gzip:  14.47 kB
+10:12:22 PM: ../dist/public/assets/index-DlhM3Fkk.js                         456.38 kB │ gzip: 143.00 kB
+10:12:22 PM: ✓ built in 3.94s
+10:12:22 PM: building server...
+10:12:22 PM:   dist/index.cjs  1.0mb ⚠️
+10:12:22 PM: ⚡ Done in 123ms
+10:12:22 PM: ​
+10:12:22 PM: (build.command completed in 5.2s)
+10:12:22 PM: ​
+10:12:22 PM: Functions bundling                                            
+10:12:22 PM: ────────────────────────────────────────────────────────────────
+10:12:22 PM: ​
+10:12:22 PM: Packaging Functions from server directory:
+10:12:22 PM:  - db.ts
+10:12:22 PM:  - index.ts
+10:12:22 PM:  - netlify.ts
+10:12:22 PM:  - routes.ts
+10:12:22 PM:  - static.ts
+10:12:22 PM:  - storage.ts
+10:12:22 PM:  - vite.ts
+10:12:22 PM: ​
+10:12:22 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+10:12:22 PM:     server/vite.ts:10:33:
+10:12:22 PM:       10 │ const __filename = fileURLToPath(import.meta.url);
+10:12:22 PM:          ╵                                  ~~~~~~~~~~~
+10:12:22 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+10:12:22 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+10:12:22 PM:     vite.config.ts:7:33:
+10:12:22 PM:       7 │ const __filename = fileURLToPath(import.meta.url);
+10:12:22 PM:         ╵                                  ~~~~~~~~~~~
+10:12:22 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+10:12:23 PM: ▲ [WARNING] "esbuild" should be marked as external for use with "require.resolve" [require-resolve-not-external]
+10:12:23 PM:     node_modules/vite/node_modules/esbuild/lib/main.js:1656:36:
+10:12:23 PM:       1656 │   const libMainJS = require.resolve("esbuild");
+10:12:23 PM:            ╵                                     ~~~~~~~~~
+10:12:23 PM: ✘ [ERROR] Could not resolve "@babel/preset-typescript/package.json"
+10:12:23 PM:     node_modules/@babel/core/lib/config/files/module-types.js:171:36:
+10:12:23 PM:       171 │ ...t packageJson = require("@babel/preset-typescript/package.json");
+10:12:23 PM:           ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+10:12:23 PM:   You can mark the path "@babel/preset-typescript/package.json" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle. You can also surround this "require" call with a try/catch block to handle this failure at run-time instead of bundle-time.
+10:12:23 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+10:12:23 PM:     server/vite.ts:10:33:
+10:12:23 PM:       10 │ const __filename = fileURLToPath(import.meta.url);
+10:12:23 PM:          ╵                                  ~~~~~~~~~~~
+10:12:23 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+10:12:23 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+10:12:23 PM:     vite.config.ts:7:33:
+10:12:23 PM:       7 │ const __filename = fileURLToPath(import.meta.url);
+10:12:23 PM:         ╵                                  ~~~~~~~~~~~
+10:12:23 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+10:12:23 PM: ▲ [WARNING] "esbuild" should be marked as external for use with "require.resolve" [require-resolve-not-external]
+10:12:23 PM:     node_modules/vite/node_modules/esbuild/lib/main.js:1656:36:
+10:12:23 PM:       1656 │   const libMainJS = require.resolve("esbuild");
+10:12:23 PM:            ╵                                     ~~~~~~~~~
+10:12:23 PM: ✘ [ERROR] Could not resolve "../pkg"
+10:12:23 PM:     node_modules/lightningcss/node/index.js:17:27:
+10:12:23 PM:       17 │   module.exports = require(`../pkg`);
+10:12:23 PM:          ╵                            ~~~~~~~~
+10:12:23 PM: ✘ [ERROR] Could not resolve "@babel/preset-typescript/package.json"
+10:12:23 PM:     node_modules/@babel/core/lib/config/files/module-types.js:171:36:
+10:12:23 PM:       171 │ ...t packageJson = require("@babel/preset-typescript/package.json");
+10:12:23 PM:           ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+10:12:23 PM:   You can mark the path "@babel/preset-typescript/package.json" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle. You can also surround this "require" call with a try/catch block to handle this failure at run-time instead of bundle-time.
+10:12:23 PM: ✘ [ERROR] Could not resolve "../pkg"
+10:12:23 PM:     node_modules/lightningcss/node/index.js:17:27:
+10:12:23 PM:       17 │   module.exports = require(`../pkg`);
+10:12:23 PM:          ╵                            ~~~~~~~~
+10:12:23 PM: ▲ [WARNING] The glob pattern require("../lightningcss.*.node") did not match any files [empty-glob]
+10:12:23 PM:     node_modules/lightningcss/node/index.js:22:29:
+10:12:23 PM:       22 │ ...dule.exports = require(`../lightningcss.${parts.join('-')}.node`);
+10:12:23 PM:          ╵                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+10:12:23 PM: ▲ [WARNING] "esbuild" should be marked as external for use with "require.resolve" [require-resolve-not-external]
+10:12:23 PM:     node_modules/tsx/node_modules/esbuild/lib/main.js:1656:36:
+10:12:23 PM:       1656 │   const libMainJS = require.resolve("esbuild");
+10:12:23 PM:            ╵                                     ~~~~~~~~~
+10:12:23 PM: ​
+10:12:23 PM: Dependencies installation error                               
+10:12:23 PM: ────────────────────────────────────────────────────────────────
+10:12:23 PM: ​
+10:12:23 PM:   Error message
+10:12:23 PM:   A Netlify Function failed to require one of its dependencies.
+10:12:23 PM:   Please make sure it is present in the site's top-level "package.json".
+​
+10:12:23 PM:   Build failed with 2 errors:
+10:12:23 PM:   node_modules/@babel/core/lib/config/files/module-types.js:171:36: ERROR: Could not resolve "@babel/preset-typescript/package.json"
+10:12:23 PM:   node_modules/lightningcss/node/index.js:17:27: ERROR: Could not resolve "../pkg"
+10:12:23 PM: ​
+10:12:23 PM:   Resolved config
+10:12:23 PM:   build:
+10:12:23 PM:     command: npm run build
+10:12:23 PM:     commandOrigin: config
+10:12:23 PM:     publish: /opt/build/repo/dist/public
+10:12:23 PM:     publishOrigin: config
+10:12:23 PM:   functionsDirectory: /opt/build/repo/server
+10:12:23 PM:   redirects:
+10:12:23 PM:     - from: /api/*
+      status: 200
+      to: /.netlify/functions/index/:splat
+    - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+▲ [WARNING] The glob pattern require("../lightningcss.*.node") did not match any files [empty-glob]
+10:12:23 PM:     node_modules/lightningcss/node/index.js:22:29:
+10:12:23 PM:       22 │ ...dule.exports = require(`../lightningcss.${parts.join('-')}.node`);
+10:12:23 PM:          ╵                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+10:12:23 PM: ▲ [WARNING] "esbuild" should be marked as external for use with "require.resolve" [require-resolve-not-external]
+10:12:23 PM:     node_modules/tsx/node_modules/esbuild/lib/main.js:1656:36:
+10:12:23 PM:       1656 │   const libMainJS = require.resolve("esbuild");
+10:12:23 PM:            ╵                                     ~~~~~~~~~
+10:12:24 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+10:12:24 PM: Build failed due to a user error: Build script returned non-zero exit code: 2
+10:12:24 PM: Failing build: Failed to build site
+10:12:24 PM: Finished processing build request in 20.781s
