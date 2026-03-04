@@ -1,0 +1,214 @@
+9:43:57 PM: build-image version: 8c9b1115cf47daa4d19510cfee34034469213d7a (noble-new-builds)
+9:43:57 PM: buildbot version: b37d60600e9fbd0a1bcdda16d43f1897be4759fc
+9:43:58 PM: Fetching cached dependencies
+9:43:58 PM: Failed to fetch cache, continuing with build
+9:43:58 PM: Starting to prepare the repo for build
+9:43:58 PM: No cached dependencies found. Cloning fresh repo
+9:43:58 PM: git clone --filter=blob:none https://github.com/SairajKoyande1111/Reel-Downloader
+9:43:58 PM: Preparing Git Reference refs/heads/main
+9:44:00 PM: Installing dependencies
+9:44:00 PM: mise ~/.config/mise/config.toml tools: python@3.14.3
+9:44:00 PM: mise ~/.config/mise/config.toml tools: ruby@3.4.8
+9:44:01 PM: mise ~/.config/mise/config.toml tools: go@1.26.0
+9:44:01 PM: v22.22.0 is already installed.
+9:44:01 PM: Now using node v22.22.0 (npm v10.9.4)
+9:44:01 PM: Enabling Node.js Corepack
+9:44:02 PM: No npm workspaces detected
+9:44:02 PM: Installing npm packages using npm version 10.9.4
+9:44:09 PM: added 492 packages in 7s
+9:44:09 PM: npm packages installed
+9:44:09 PM: Successfully installed dependencies
+9:44:09 PM: Detected 1 framework(s)
+9:44:09 PM: "vite" at version "7.3.1"
+9:44:10 PM: Starting build script
+9:44:10 PM: Section completed: initializing
+9:44:12 PM: ​
+9:44:12 PM: Netlify Build                                                 
+9:44:12 PM: ────────────────────────────────────────────────────────────────
+9:44:12 PM: ​
+9:44:12 PM: ❯ Version
+9:44:12 PM:   @netlify/build 35.8.4
+9:44:12 PM: ​
+9:44:12 PM: ❯ Flags
+9:44:12 PM:   accountId: 692a8ecc5ae9595e33297c1b
+9:44:12 PM:   baseRelDir: true
+9:44:12 PM:   buildId: 69a85a450921ad0a510de2e1
+9:44:12 PM:   deployId: 69a85a450921ad0a510de2e3
+9:44:12 PM: ​
+9:44:12 PM: ❯ Current directory
+9:44:12 PM:   /opt/build/repo
+9:44:12 PM: ​
+9:44:12 PM: ❯ Config file
+9:44:12 PM:   /opt/build/repo/netlify.toml
+9:44:12 PM: ​
+9:44:12 PM: ❯ Context
+9:44:12 PM:   production
+9:44:12 PM: ​
+9:44:12 PM: build.command from netlify.toml                               
+9:44:12 PM: ────────────────────────────────────────────────────────────────
+9:44:12 PM: ​
+9:44:12 PM: $ npm run build
+9:44:12 PM: > rest-express@1.0.0 build
+9:44:12 PM: > tsx script/build.ts
+9:44:13 PM: building client...
+9:44:13 PM: vite v7.3.1 building client environment for production...
+9:44:14 PM: transforming...
+9:44:17 PM: ✓ 2031 modules transformed.
+9:44:18 PM: rendering chunks...
+9:44:18 PM: computing gzip size...
+9:44:18 PM: ../dist/public/index.html                                         2.18 kB │ gzip:   0.84 kB
+9:44:18 PM: ../dist/public/assets/lightning_1772635445711-nXhH9Npq.png       11.27 kB
+9:44:18 PM: ../dist/public/assets/video_1772635646433-BBo_F7yQ.png           11.49 kB
+9:44:18 PM: ../dist/public/assets/insurance_1772635570218-BGOQjyf9.png       14.79 kB
+9:44:18 PM: ../dist/public/assets/facebook_(1)_1772634020519-ejnf6rkB.png    16.04 kB
+9:44:18 PM: ../dist/public/assets/twitter_1772634025574-DTBoECSh.png         17.45 kB
+9:44:18 PM: ../dist/public/assets/prohibition_1772635526816-N3I5Ei0O.png     20.68 kB
+9:44:18 PM: ../dist/public/assets/instagram_(1)_1772634012258-Dbq-n8qV.png   52.99 kB
+9:44:18 PM: ../dist/public/assets/index-nFPEQc4t.css                         93.92 kB │ gzip:  14.47 kB
+9:44:18 PM: ../dist/public/assets/index-DlhM3Fkk.js                         456.38 kB │ gzip: 143.00 kB
+9:44:18 PM: ✓ built in 4.28s
+9:44:18 PM: building server...
+9:44:18 PM:   dist/index.cjs  1.0mb ⚠️
+9:44:18 PM: ⚡ Done in 111ms
+9:44:18 PM: ​
+9:44:18 PM: (build.command completed in 5.6s)
+9:44:18 PM: ​
+9:44:18 PM: Functions bundling                                            
+9:44:18 PM: ────────────────────────────────────────────────────────────────
+9:44:18 PM: ​
+9:44:18 PM: Packaging Functions from server directory:
+9:44:18 PM:  - db.ts
+9:44:18 PM:  - index.ts
+9:44:18 PM:  - netlify.ts
+9:44:18 PM:  - routes.ts
+9:44:18 PM:  - static.ts
+9:44:18 PM:  - storage.ts
+9:44:18 PM:  - vite.ts
+9:44:18 PM: ​
+9:44:18 PM: ✘ [ERROR] Top-level await is currently not supported with the "cjs" output format
+9:44:18 PM:     vite.config.ts:13:10:
+9:44:18 PM:       13 │           await import("@replit/vite-plugin-cartographer").then((m...
+9:44:18 PM:          ╵           ~~~~~
+9:44:18 PM: ✘ [ERROR] Top-level await is currently not supported with the "cjs" output format
+9:44:18 PM:     vite.config.ts:16:10:
+9:44:18 PM:       16 │           await import("@replit/vite-plugin-dev-banner").then((m) =>
+9:44:18 PM:          ╵           ~~~~~
+9:44:18 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+9:44:18 PM:     vite.config.ts:24:24:
+9:44:18 PM:       24 │       "@": path.resolve(import.meta.dirname, "client", "src"),
+9:44:18 PM:          ╵                         ~~~~~~~~~~~
+9:44:18 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+9:44:18 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+9:44:18 PM:     vite.config.ts:25:30:
+9:44:18 PM:       25 │       "@shared": path.resolve(import.meta.dirname, "shared"),
+9:44:18 PM:          ╵                               ~~~~~~~~~~~
+9:44:18 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+9:44:18 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+9:44:18 PM:     vite.config.ts:26:30:
+9:44:18 PM:       26 │ ...  "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+9:44:18 PM:          ╵                              ~~~~~~~~~~~
+9:44:18 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+9:44:20 PM: ✘ [ERROR] Could not resolve "@babel/preset-typescript/package.json"
+9:44:20 PM:     node_modules/@babel/core/lib/config/files/module-types.js:171:36:
+9:44:20 PM:       171 │ ...t packageJson = require("@babel/preset-typescript/package.json");
+9:44:20 PM:           ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+9:44:20 PM:   You can mark the path "@babel/preset-typescript/package.json" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle. You can also surround this "require" call with a try/catch block to handle this failure at run-time instead of bundle-time.
+9:44:27 PM: ✘ [ERROR] Could not resolve "../pkg"
+9:44:27 PM:     node_modules/lightningcss/node/index.js:17:27:
+9:44:27 PM:       17 │   module.exports = require(`../pkg`);
+9:44:27 PM:          ╵                            ~~~~~~~~
+9:44:28 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+9:44:28 PM:     vite.config.ts:29:21:
+9:44:28 PM:       29 │   root: path.resolve(import.meta.dirname, "client"),
+9:44:28 PM:          ╵                      ~~~~~~~~~~~
+9:44:28 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+9:44:28 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+9:44:28 PM:     vite.config.ts:31:25:
+9:44:28 PM:       31 │     outDir: path.resolve(import.meta.dirname, "dist/public"),
+9:44:28 PM:          ╵                          ~~~~~~~~~~~
+9:44:28 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+9:44:28 PM: ▲ [WARNING] "esbuild" should be marked as external for use with "require.resolve" [require-resolve-not-external]
+9:44:28 PM:     node_modules/vite/node_modules/esbuild/lib/main.js:1656:36:
+9:44:28 PM:       1656 │   const libMainJS = require.resolve("esbuild");
+9:44:28 PM:            ╵                                     ~~~~~~~~~
+9:44:28 PM: 6 of 8 warnings and all 4 errors shown (disable the message limit with --log-limit=0)
+9:44:28 PM: ✘ [ERROR] Top-level await is currently not supported with the "cjs" output format
+9:44:28 PM:     vite.config.ts:13:10:
+9:44:28 PM:       13 │           await import("@replit/vite-plugin-cartographer").then((m...
+9:44:28 PM:          ╵           ~~~~~
+9:44:28 PM: ✘ [ERROR] Top-level await is currently not supported with the "cjs" output format
+9:44:28 PM:     vite.config.ts:16:10:
+9:44:28 PM:       16 │           await import("@replit/vite-plugin-dev-banner").then((m) =>
+9:44:28 PM:          ╵           ~~~~~
+9:44:28 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+9:44:28 PM:     vite.config.ts:24:24:
+9:44:28 PM:       24 │       "@": path.resolve(import.meta.dirname, "client", "src"),
+9:44:28 PM:          ╵                         ~~~~~~~~~~~
+9:44:28 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+9:44:28 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+9:44:28 PM:     vite.config.ts:25:30:
+9:44:28 PM:       25 │       "@shared": path.resolve(import.meta.dirname, "shared"),
+9:44:28 PM:          ╵                               ~~~~~~~~~~~
+9:44:28 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+9:44:28 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+9:44:28 PM:     vite.config.ts:26:30:
+9:44:28 PM:       26 │ ...  "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+9:44:28 PM:          ╵                              ~~~~~~~~~~~
+9:44:28 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+9:44:28 PM: ​
+9:44:28 PM: Dependencies installation error                               
+9:44:28 PM: ────────────────────────────────────────────────────────────────
+9:44:28 PM: ​
+9:44:28 PM:   Error message
+9:44:28 PM:   A Netlify Function failed to require one of its dependencies.
+9:44:28 PM:   Please make sure it is present in the site's top-level "package.json".
+​
+9:44:28 PM:   Build failed with 4 errors:
+9:44:28 PM:   node_modules/@babel/core/lib/config/files/module-types.js:171:36: ERROR: Could not resolve "@babel/preset-typescript/package.json"
+9:44:28 PM:   node_modules/lightningcss/node/index.js:17:27: ERROR: Could not resolve "../pkg"
+9:44:28 PM:   vite.config.ts:13:10: ERROR: Top-level await is currently not supported with the "cjs" output format
+9:44:28 PM:   vite.config.ts:16:10: ERROR: Top-level await is currently not supported with the "cjs" output format
+9:44:28 PM: ​
+9:44:28 PM:   Resolved config
+9:44:28 PM:   build:
+9:44:28 PM:     command: npm run build
+9:44:28 PM:     commandOrigin: config
+9:44:28 PM:     publish: /opt/build/repo/dist/public
+9:44:28 PM:     publishOrigin: config
+9:44:28 PM:   functionsDirectory: /opt/build/repo/server
+9:44:28 PM:   redirects:
+9:44:28 PM:     - from: /api/*
+      status: 200
+      to: /.netlify/functions/index/:splat
+    - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+✘ [ERROR] Could not resolve "@babel/preset-typescript/package.json"
+9:44:28 PM:     node_modules/@babel/core/lib/config/files/module-types.js:171:36:
+9:44:28 PM:       171 │ ...t packageJson = require("@babel/preset-typescript/package.json");
+9:44:28 PM:           ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+9:44:28 PM:   You can mark the path "@babel/preset-typescript/package.json" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle. You can also surround this "require" call with a try/catch block to handle this failure at run-time instead of bundle-time.
+9:44:28 PM: ✘ [ERROR] Could not resolve "../pkg"
+9:44:28 PM:     node_modules/lightningcss/node/index.js:17:27:
+9:44:28 PM:       17 │   module.exports = require(`../pkg`);
+9:44:28 PM:          ╵                            ~~~~~~~~
+9:44:28 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+9:44:28 PM:     vite.config.ts:29:21:
+9:44:28 PM:       29 │   root: path.resolve(import.meta.dirname, "client"),
+9:44:28 PM:          ╵                      ~~~~~~~~~~~
+9:44:28 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+9:44:28 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+9:44:28 PM:     vite.config.ts:31:25:
+9:44:28 PM:       31 │     outDir: path.resolve(import.meta.dirname, "dist/public"),
+9:44:28 PM:          ╵                          ~~~~~~~~~~~
+9:44:28 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+9:44:28 PM: ▲ [WARNING] "esbuild" should be marked as external for use with "require.resolve" [require-resolve-not-external]
+9:44:28 PM:     node_modules/vite/node_modules/esbuild/lib/main.js:1656:36:
+9:44:28 PM:       1656 │   const libMainJS = require.resolve("esbuild");
+9:44:28 PM:            ╵                                     ~~~~~~~~~
+9:44:28 PM: 6 of 8 warnings and all 4 errors shown (disable the message limit with --log-limit=0)
+9:44:29 PM: Build failed due to a user error: Build script returned non-zero exit code: 2
+9:44:30 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+9:44:30 PM: Failing build: Failed to build site
+9:44:30 PM: Finished processing build request in 32.66s
