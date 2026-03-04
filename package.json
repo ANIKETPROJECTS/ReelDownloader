@@ -8,7 +8,6 @@
     "build": "npx tsx script/build.ts",
     "start": "NODE_ENV=production node server/index.js",
     "check": "tsc",
-    "db:push": "drizzle-kit push",
     "vercel-build": "npm run build && cp dist/index.cjs server/index.js && cp -r dist/public/* public/",
     "netlify-build": "npm run build && cp dist/index.cjs server/index.cjs"
   },
@@ -97,11 +96,6 @@
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1"
-  },
-  "overrides": {
-    "drizzle-kit": {
-      "@esbuild-kit/esm-loader": "npm:tsx@^4.20.4"
-    }
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.8"
