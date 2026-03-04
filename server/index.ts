@@ -90,7 +90,7 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || "5000", 10);
-  if (process.env.VERCEL !== "1") {
+  if (process.env.VERCEL !== "1" && process.env.NODE_ENV !== "production") {
     httpServer.listen(
       {
         port,
@@ -101,6 +101,10 @@ app.use((req, res, next) => {
         log(`serving on port ${port}`);
       },
     );
+  } else if (process.env.VERCEL !== "1") {
+    httpServer.listen(port, "0.0.0.0", () => {
+      log(`serving on port ${port}`);
+    });
   }
 })();
 

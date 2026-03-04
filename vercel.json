@@ -2,22 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
+      "src": "server/index.ts",
       "use": "@vercel/node"
-    },
-    {
-      "src": "client/index.html",
-      "use": "@vercel/static"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "server/index.ts"
+      "src": "/api/(.*)",
+      "dest": "server/index.ts"
     },
     {
-      "source": "/(.*)",
-      "destination": "client/$1"
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server/index.ts"
     }
   ]
 }
