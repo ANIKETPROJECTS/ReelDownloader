@@ -1,0 +1,46 @@
+index-Dd_ik5PT.js:16 useDownloadReel: Starting mutation for URL: https://www.instagram.com/reel/DVQ8vy6iIz-/?igsh=aG15aHJjc3Mzczdq
+index-Dd_ik5PT.js:16 useDownloadReel: Sending POST to /api/reels/download
+index-Dd_ik5PT.js:16  POST https://allreeldownloader.netlify.app/api/reels/download 502 (Bad Gateway)
+mutationFn @ index-Dd_ik5PT.js:16
+fn @ index-Dd_ik5PT.js:8
+E @ index-Dd_ik5PT.js:8
+start @ index-Dd_ik5PT.js:8
+execute @ index-Dd_ik5PT.js:8
+await in execute
+mutate @ index-Dd_ik5PT.js:8
+(anonymous) @ index-Dd_ik5PT.js:8
+h @ index-Dd_ik5PT.js:16
+Vx @ index-Dd_ik5PT.js:5
+zx @ index-Dd_ik5PT.js:5
+Bx @ index-Dd_ik5PT.js:5
+ph @ index-Dd_ik5PT.js:5
+mh @ index-Dd_ik5PT.js:5
+(anonymous) @ index-Dd_ik5PT.js:5
+Vu @ index-Dd_ik5PT.js:8
+Sf @ index-Dd_ik5PT.js:5
+Vl @ index-Dd_ik5PT.js:5
+wl @ index-Dd_ik5PT.js:5
+rw @ index-Dd_ik5PT.js:5
+index-Dd_ik5PT.js:16 useDownloadReel: Response status: 502
+index-Dd_ik5PT.js:16 useDownloadReel: Error response data: {errorType: 'Error', errorMessage: 'Cannot find module @rollup/rollup-linux-x64-gnu. n…oth package-lock.json and node_modules directory.', trace: Array(11)}errorMessage: "Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory."errorType: "Error"trace: Array(11)0: "Error: Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory."1: "    at requireWithFriendlyError (/var/task/node_modules/rollup/dist/native.js:83:9)"2: "    at Object.<anonymous> (/var/task/node_modules/rollup/dist/native.js:92:76)"3: "    at Module._compile (node:internal/modules/cjs/loader:1706:14)"4: "    at Object..js (node:internal/modules/cjs/loader:1839:10)"5: "    at Module.load (node:internal/modules/cjs/loader:1441:32)"6: "    at Function._load (node:internal/modules/cjs/loader:1263:12)"7: "    at TracingChannel.traceSync (node:diagnostics_channel:328:14)"8: "    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)"9: "    at cjsLoader (node:internal/modules/esm/translators:309:5)"10: "    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:202:7)"length: 11[[Prototype]]: Array(0)at: ƒ at()concat: ƒ concat()constructor: ƒ Array()copyWithin: ƒ copyWithin()entries: ƒ entries()every: ƒ every()fill: ƒ fill()filter: ƒ filter()find: ƒ find()findIndex: ƒ findIndex()findLast: ƒ findLast()findLastIndex: ƒ findLastIndex()flat: ƒ flat()flatMap: ƒ flatMap()forEach: ƒ forEach()includes: ƒ includes()indexOf: ƒ indexOf()join: ƒ join()keys: ƒ keys()lastIndexOf: ƒ lastIndexOf()length: 0map: ƒ map()pop: ƒ pop()push: ƒ push()reduce: ƒ reduce()reduceRight: ƒ reduceRight()reverse: ƒ reverse()shift: ƒ shift()slice: ƒ slice()some: ƒ some()sort: ƒ sort()splice: ƒ splice()toLocaleString: ƒ toLocaleString()toReversed: ƒ toReversed()toSorted: ƒ toSorted()toSpliced: ƒ toSpliced()toString: ƒ toString()unshift: ƒ unshift()values: ƒ values()with: ƒ with()Symbol(Symbol.iterator): ƒ values()Symbol(Symbol.unscopables): {at: true, copyWithin: true, entries: true, fill: true, find: true, …}[[Prototype]]: Object[[Prototype]]: Object
+mutationFn @ index-Dd_ik5PT.js:16
+await in mutationFn
+fn @ index-Dd_ik5PT.js:8
+E @ index-Dd_ik5PT.js:8
+start @ index-Dd_ik5PT.js:8
+execute @ index-Dd_ik5PT.js:8
+await in execute
+mutate @ index-Dd_ik5PT.js:8
+(anonymous) @ index-Dd_ik5PT.js:8
+h @ index-Dd_ik5PT.js:16
+Vx @ index-Dd_ik5PT.js:5
+zx @ index-Dd_ik5PT.js:5
+Bx @ index-Dd_ik5PT.js:5
+ph @ index-Dd_ik5PT.js:5
+mh @ index-Dd_ik5PT.js:5
+(anonymous) @ index-Dd_ik5PT.js:5
+Vu @ index-Dd_ik5PT.js:8
+Sf @ index-Dd_ik5PT.js:5
+Vl @ index-Dd_ik5PT.js:5
+wl @ index-Dd_ik5PT.js:5
+rw @ index-Dd_ik5PT.js:5
