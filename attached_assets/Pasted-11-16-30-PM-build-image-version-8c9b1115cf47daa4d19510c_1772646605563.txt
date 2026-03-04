@@ -1,0 +1,138 @@
+11:16:30 PM: build-image version: 8c9b1115cf47daa4d19510cfee34034469213d7a (noble-new-builds)
+11:16:30 PM: buildbot version: b37d60600e9fbd0a1bcdda16d43f1897be4759fc
+11:16:30 PM: Building with cache
+11:16:30 PM: Starting to prepare the repo for build
+11:16:30 PM: Preparing Git Reference refs/heads/main
+11:16:32 PM: Installing dependencies
+11:16:32 PM: mise ~/.config/mise/config.toml tools: python@3.14.3
+11:16:32 PM: mise ~/.config/mise/config.toml tools: ruby@3.4.8
+11:16:32 PM: mise ~/.config/mise/config.toml tools: go@1.26.0
+11:16:33 PM: v22.22.0 is already installed.
+11:16:33 PM: Now using node v22.22.0 (npm v10.9.4)
+11:16:33 PM: Enabling Node.js Corepack
+11:16:33 PM: No npm workspaces detected
+11:16:33 PM: Installing npm packages using npm version 10.9.4
+11:16:34 PM: up to date in 642ms
+11:16:34 PM: npm packages installed
+11:16:34 PM: Successfully installed dependencies
+11:16:34 PM: Detected 1 framework(s)
+11:16:34 PM: "vite" at version "7.3.1"
+11:16:34 PM: Starting build script
+11:16:35 PM: Section completed: initializing
+11:16:37 PM: ​
+11:16:37 PM: Netlify Build                                                 
+11:16:37 PM: ────────────────────────────────────────────────────────────────
+11:16:37 PM: ​
+11:16:37 PM: ❯ Version
+11:16:37 PM:   @netlify/build 35.8.4
+11:16:37 PM: ​
+11:16:37 PM: ❯ Flags
+11:16:37 PM:   accountId: 6926d61cc732b414194f7d3a
+11:16:37 PM:   baseRelDir: true
+11:16:37 PM:   buildId: 69a86ff49d55bd0008aa1cca
+11:16:37 PM:   deployId: 69a86ff49d55bd0008aa1ccc
+11:16:37 PM: ​
+11:16:37 PM: ❯ Current directory
+11:16:37 PM:   /opt/build/repo
+11:16:37 PM: ​
+11:16:37 PM: ❯ Config file
+11:16:37 PM:   /opt/build/repo/netlify.toml
+11:16:37 PM: ​
+11:16:37 PM: ❯ Context
+11:16:37 PM:   production
+11:16:37 PM: ​
+11:16:37 PM: build.command from netlify.toml                               
+11:16:37 PM: ────────────────────────────────────────────────────────────────
+11:16:37 PM: ​
+11:16:37 PM: $ npm run build
+11:16:38 PM: > rest-express@1.0.0 build
+11:16:38 PM: > npx tsx script/build.ts
+11:16:39 PM: building client...
+11:16:39 PM: vite v7.3.1 building client environment for production...
+11:16:40 PM: transforming...
+11:16:43 PM: ✓ 2031 modules transformed.
+11:16:43 PM: rendering chunks...
+11:16:43 PM: computing gzip size...
+11:16:43 PM: ../dist/public/index.html                                         2.18 kB │ gzip:   0.84 kB
+11:16:43 PM: ../dist/public/assets/lightning_1772635445711-nXhH9Npq.png       11.27 kB
+11:16:43 PM: ../dist/public/assets/video_1772635646433-BBo_F7yQ.png           11.49 kB
+11:16:43 PM: ../dist/public/assets/insurance_1772635570218-BGOQjyf9.png       14.79 kB
+11:16:43 PM: ../dist/public/assets/facebook_(1)_1772634020519-ejnf6rkB.png    16.04 kB
+11:16:43 PM: ../dist/public/assets/twitter_1772634025574-DTBoECSh.png         17.45 kB
+11:16:43 PM: ../dist/public/assets/prohibition_1772635526816-N3I5Ei0O.png     20.68 kB
+11:16:43 PM: ../dist/public/assets/instagram_(1)_1772634012258-Dbq-n8qV.png   52.99 kB
+11:16:43 PM: ../dist/public/assets/index-nFPEQc4t.css                         93.92 kB │ gzip:  14.47 kB
+11:16:43 PM: ../dist/public/assets/index-1Sw-XYuy.js                         456.81 kB │ gzip: 143.12 kB
+11:16:43 PM: ✓ built in 3.77s
+11:16:43 PM: building server...
+11:16:43 PM:   dist/index.cjs  877.0kb
+11:16:43 PM: ⚡ Done in 83ms
+11:16:43 PM: ​
+11:16:43 PM: (build.command completed in 5.6s)
+11:16:43 PM: ​
+11:16:43 PM: Functions bundling                                            
+11:16:43 PM: ────────────────────────────────────────────────────────────────
+11:16:43 PM: ​
+11:16:43 PM: Packaging Functions from server directory:
+11:16:43 PM:  - index.ts
+11:16:43 PM:  - netlify.ts
+11:16:43 PM:  - routes.ts
+11:16:43 PM:  - static.ts
+11:16:43 PM:  - storage.ts
+11:16:43 PM:  - vite.ts
+11:16:43 PM: ​
+11:16:43 PM: ✘ [ERROR] Could not resolve "./index.cjs"
+11:16:43 PM:     server/netlify.ts:3:16:
+11:16:43 PM:       3 │ import app from "./index.cjs";
+11:16:43 PM:         ╵                 ~~~~~~~~~~~~~
+11:16:43 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+11:16:43 PM:     server/vite.ts:8:33:
+11:16:43 PM:       8 │ const __filename = fileURLToPath(import.meta.url);
+11:16:43 PM:         ╵                                  ~~~~~~~~~~~
+11:16:43 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+11:16:43 PM: ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+11:16:43 PM:     vite.config.ts:7:33:
+11:16:43 PM:       7 │ const __filename = fileURLToPath(import.meta.url);
+11:16:43 PM:         ╵                                  ~~~~~~~~~~~
+11:16:43 PM:   You need to set the output format to "esm" for "import.meta" to work correctly.
+11:16:43 PM: ​
+11:16:43 PM: Dependencies installation error                               
+11:16:43 PM: ────────────────────────────────────────────────────────────────
+11:16:43 PM: ​
+11:16:43 PM:   Error message
+11:16:43 PM:   A Netlify Function failed to require one of its dependencies.
+11:16:43 PM:   Please make sure it is present in the site's top-level "package.json".
+​
+11:16:43 PM:   Build failed with 1 error:
+11:16:43 PM:   server/netlify.ts:3:16: ERROR: Could not resolve "./index.cjs"
+11:16:43 PM: ​
+11:16:43 PM:   Resolved config
+11:16:43 PM:   build:
+11:16:43 PM:     command: npm run build
+11:16:43 PM:     commandOrigin: config
+11:16:43 PM:     publish: /opt/build/repo/dist/public
+11:16:43 PM:     publishOrigin: config
+11:16:43 PM:   functions:
+11:16:43 PM:     "*":
+11:16:43 PM:       external_node_modules:
+11:16:43 PM:         - lightningcss
+11:16:43 PM:         - "@babel/core"
+11:16:43 PM:         - "@babel/preset-typescript"
+11:16:43 PM:         - tsx
+11:16:43 PM:         - esbuild
+11:16:43 PM:         - pg
+11:16:43 PM:         - drizzle-orm
+11:16:43 PM:       node_bundler: esbuild
+11:16:43 PM:   functionsDirectory: /opt/build/repo/server
+11:16:43 PM:   redirects:
+11:16:49 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+11:16:49 PM:     - from: /api/*
+      status: 200
+      to: /.netlify/functions/index/:splat
+    - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+11:16:49 PM: Build failed due to a user error: Build script returned non-zero exit code: 2
+11:16:49 PM: Failing build: Failed to build site
+11:16:49 PM: Finished processing build request in 19.196s
