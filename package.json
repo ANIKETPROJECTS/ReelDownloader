@@ -8,7 +8,7 @@
     "build": "tsx script/build.ts",
     "start": "NODE_ENV=production node server/index.js",
     "check": "tsc",
-    "vercel-build": "npm run build && cp dist/index.cjs server/index.js && mkdir -p public && cp -r dist/public/* public/",
+    "vercel-build": "npm run build && mv dist/index.cjs server/index.js && mkdir -p public && cp -r dist/public/* public/",
     "netlify-build": "npm run build && cp dist/index.cjs server/index.cjs"
   },
   "dependencies": {
