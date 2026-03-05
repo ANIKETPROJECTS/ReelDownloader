@@ -1,5 +1,8 @@
 import serverless from "serverless-http";
-import expressApp from "../server/index.js";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const expressApp = require("../server/index.js");
 
 const handler = serverless(expressApp);
 
