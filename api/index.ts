@@ -1,5 +1,8 @@
-import app from "../server/index.js";
+import serverless from "serverless-http";
+import expressApp from "../server/index.js";
 
-export default async function handler(req: any, res: any) {
-  return app(req, res);
+const handler = serverless(expressApp);
+
+export default async function (req: any, res: any) {
+  return handler(req, res);
 }
