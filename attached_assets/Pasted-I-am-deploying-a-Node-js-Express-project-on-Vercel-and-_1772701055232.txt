@@ -1,0 +1,89 @@
+I am deploying a Node.js + Express project on Vercel and the serverless function is crashing during deployment. Please perform a full audit and fix all issues so the API works correctly on Vercel serverless functions.
+
+Current error from Vercel logs:
+
+Error:
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/server/index.ts'
+SyntaxError: The requested module '../server/index.js' does not provide an export named 'default'
+
+Goal:
+Fix the code so the Express application runs correctly through Vercel serverless functions.
+
+Tasks:
+
+1. Inspect the project structure and ensure it follows a Vercel-compatible layout:
+
+project/
+api/index.ts
+server/index.js
+package.json
+
+2. Ensure `/server/index.js` exports the Express app using a **default export** and does NOT start a server with `app.listen()`.
+
+Example:
+
+```js id="3sqg4k"
+import express from "express";
+
+const app = express();
+
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.json({ message: "API running" });
+});
+
+app.post("/api/reels/download", (req, res) => {
+  const { url } = req.body;
+  res.json({ success: true, url });
+});
+
+export default app;
+```
+
+3. Ensure `/api/index.ts` properly forwards requests to the Express app:
+
+```ts id="ljl9vr"
+import app from "../server/index.js";
+
+export default function handler(req, res) {
+  return app(req, res);
+}
+```
+
+4. Ensure the project uses **ES Modules** consistently.
+
+Check `package.json` and add:
+
+```json id="tkh2cl"
+{
+  "type": "module"
+}
+```
+
+5. Ensure all imports include file extensions (`.js`).
+
+6. Remove any use of:
+
+* `module.exports`
+* `require()`
+
+Replace them with `import` and `export`.
+
+7. If TypeScript is used for the API route (`index.ts`), ensure it compiles correctly for Vercel and does not import `.ts` files at runtime.
+
+8. Ensure Express middleware like `express.json()` is included so POST bodies work.
+
+9. Verify the API works with the following endpoints:
+
+GET /
+POST /api/reels/download
+
+10. Provide the corrected versions of these files:
+
+* `/server/index.js`
+* `/api/index.ts`
+* `package.json` (if changes are needed)
+
+Goal result:
+The project deploys successfully on Vercel and the API endpoints work without runtime errors.
