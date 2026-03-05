@@ -47,16 +47,16 @@ app.use((req, res, next) => {
     return res.status(status).json({ message });
   });
 
-  if (process.env.NODE_ENV !== "production" && process.env.VERCEL !== "1" && process.env.NETLIFY !== "1") {
+  if (process.env.NODE_ENV !== "production" && !process.env.VERCEL && !process.env.NETLIFY) {
     const { setupVite } = await import("./vite.js");
     await setupVite(httpServer, app);
-  } else if (process.env.VERCEL !== "1" && process.env.NETLIFY !== "1") {
+  } else if (!process.env.VERCEL && !process.env.NETLIFY) {
     const { serveStatic } = await import("./static.js");
     serveStatic(app);
   }
 
   const port = parseInt(process.env.PORT || "5000", 10);
-  if (process.env.VERCEL !== "1" && process.env.NETLIFY !== "1") {
+  if (!process.env.VERCEL && !process.env.NETLIFY) {
     httpServer.listen(port, "0.0.0.0", () => {
       console.log(`${new Date().toLocaleTimeString()} [express] serving on port ${port}`);
     });

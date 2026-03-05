@@ -53,7 +53,7 @@ async function buildAll() {
     outfile: "dist/index.js",
     define: {
       "process.env.NODE_ENV": '"production"',
-      "process.env.NETLIFY": '"1"',
+      "process.env.VERCEL": '"1"',
     },
     minify: true,
     external: externals,
