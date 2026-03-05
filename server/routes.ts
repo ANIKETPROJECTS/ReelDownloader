@@ -62,21 +62,28 @@ export async function registerRoutes(
       });
       if (!response.ok) throw new Error(`Failed to fetch video: ${response.statusText}`);
 
-      const contentType = response.headers.get("content-type") || "video/mp4";
-      res.setHeader("Content-Type", contentType);
-      res.setHeader("Content-Disposition", 'attachment; filename="instagram-reel.mp4"');
+    const contentType = response.headers.get("content-type") || "video/mp4";
+    res.setHeader("Content-Type", contentType);
+    res.setHeader("Content-Disposition", 'attachment; filename="instagram-reel.mp4"');
+    res.setHeader("Access-Control-Allow-Origin", "*");
 
-      if (response.body) {
-        // @ts-ignore
-        const nodeStream = Readable.fromWeb(response.body);
-        nodeStream.on("error", (err) => {
-          console.error("Proxy stream error:", err);
-          if (!res.headersSent) res.status(500).send("Error streaming video");
-        });
-        nodeStream.pipe(res);
-      } else {
-        res.status(500).send("Empty response body");
-      }
+    if (response.body) {
+      // @ts-ignore
+      const nodeStream = Readable.fromWeb(response.body);
+      nodeStream.on("error", (err) => {
+        console.error("Proxy stream error:", err);
+        if (!res.headersSent) {
+          res.status(500).json({ 
+            success: false, 
+            message: "Error streaming video",
+            error: err.message 
+          });
+        }
+      });
+      nodeStream.pipe(res);
+    } else {
+      res.status(500).json({ success: false, message: "Empty response body" });
+    }
     } catch (error) {
       console.error("Proxy error:", error);
       if (!res.headersSent) res.status(500).send("Failed to download video");

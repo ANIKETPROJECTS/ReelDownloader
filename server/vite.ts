@@ -19,7 +19,7 @@ export async function setupVite(server: Server, app: Express) {
 
   const { default: viteConfig } = await import("../vite.config.js");
   const resolvedConfig = typeof viteConfig === "function"
-    ? await viteConfig({ mode: process.env.NODE_ENV || "development", command: "serve" }, {})
+    ? await viteConfig({ mode: process.env.NODE_ENV || "development", command: "serve" })
     : viteConfig;
 
   const vite = await createViteServer({
