@@ -1,0 +1,145 @@
+The error tells us exactly what is wrong:
+
+```text
+import app, { initApp } from "../server/index.js";
+       ^
+SyntaxError: The requested module '../server/index.js' does not provide an export named 'default'
+```
+
+Your **`server/index.js` does not export `default`**, but your API file is trying to import one.
+
+So you must **match the import with the actual exports**.
+
+---
+
+# ✅ Fix (Most Likely Correct)
+
+Your **server file probably exports named functions**, like this:
+
+```js
+export const initApp = () => { ... }
+export const app = express()
+```
+
+In that case **change your import**.
+
+### Fix `/api/index.ts`
+
+Replace this:
+
+```ts
+import app, { initApp } from "../server/index.js";
+```
+
+with this:
+
+```ts
+import { app, initApp } from "../server/index.js";
+```
+
+Then export the handler:
+
+```ts
+export default function handler(req, res) {
+  return app(req, res);
+}
+```
+
+---
+
+# ✅ Alternative Fix (Cleaner)
+
+Instead of named exports, make **`server/index.js` export default**.
+
+### `/server/index.js`
+
+```js
+import express from "express";
+
+const app = express();
+
+app.use(express.json());
+
+export function initApp() {
+  // any initialization logic
+}
+
+export default app;
+```
+
+Then your current import will work:
+
+```ts
+import app, { initApp } from "../server/index.js";
+```
+
+---
+
+# ⚠️ One Important Rule for Vercel
+
+Your server file **must NOT contain**:
+
+```js
+app.listen(...)
+```
+
+Vercel automatically handles the server.
+
+---
+
+# 🚀 What Your Final Files Should Look Like
+
+### `/server/index.js`
+
+```js
+import express from "express";
+
+const app = express();
+
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.json({ message: "API running" });
+});
+
+export default app;
+```
+
+---
+
+### `/api/index.ts`
+
+```ts
+import app from "../server/index.js";
+
+export default function handler(req, res) {
+  return app(req, res);
+}
+```
+
+---
+
+# ⚡ Quick Summary
+
+Problem:
+
+```
+import app ...
+but no export default app
+```
+
+Fix either:
+
+```
+export default app
+```
+
+or
+
+```
+import { app }
+```
+
+---
+
+✅ If you want, paste your **`server/index.js` file**, and I will show you **the exact 2-line fix** so your Vercel deployment works immediately.
