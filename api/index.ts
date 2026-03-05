@@ -1,9 +1,14 @@
 import serverless from "serverless-http";
 
-export default async function handler(req: any, res: any) {
-  const mod = await import("../server/index.cjs");
-  const app = mod.default || mod;
+let server: any;
 
-  const server = serverless(app);
+export default async function handler(req: any, res: any) {
+  if (!server) {
+    const mod = await import("../server/index.cjs");
+    const app = mod.app || mod.default || mod;
+
+    server = serverless(app);
+  }
+
   return server(req, res);
 }
