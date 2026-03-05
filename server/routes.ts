@@ -92,14 +92,30 @@ export async function registerRoutes(
     try {
       console.log(`[${new Date().toISOString()}] Received download request for URL: ${req.body?.url}`);
       
+      if (!req.body) {
+        console.error("Request body is missing");
+        return res.status(400).json({ success: false, message: "Request body is missing" });
+      }
+
       const input = api.reels.download.input.parse(req.body);
+      console.log(`[${new Date().toISOString()}] Validated input URL: ${input.url}`);
       
-      console.log(`Processing Reel URL: ${input.url}`);
-      
-      let getUrl = await initDownloader();
+      let getUrl;
+      try {
+        console.log(`[${new Date().toISOString()}] Initializing downloader...`);
+        getUrl = await initDownloader();
+        console.log(`[${new Date().toISOString()}] Downloader initialized successfully`);
+      } catch (initErr) {
+        console.error(`[${new Date().toISOString()}] Failed to initialize downloader:`, initErr);
+        return res.status(500).json({
+          success: false,
+          message: "Failed to initialize downloader library",
+          error: initErr instanceof Error ? initErr.message : String(initErr)
+        });
+      }
       
       if (typeof getUrl !== 'function') {
-        console.error("Downloader library is not a function. Value:", getUrl);
+        console.error(`[${new Date().toISOString()}] Downloader library is not a function. Value type: ${typeof getUrl}`);
         return res.status(500).json({
           success: false,
           message: "Downloader library initialization failed",
@@ -107,13 +123,23 @@ export async function registerRoutes(
         });
       }
 
-      console.log("Calling downloader with URL:", input.url);
-      const result = await getUrl(input.url).catch((e: any) => {
-        console.error("Library call failed. Full error:", e);
-        throw new Error(`Library error: ${e.message || String(e)}`);
+      console.log(`[${new Date().toISOString()}] Calling downloader library for URL: ${input.url}`);
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error("Downloader library timed out after 15s")), 15000)
+      );
+
+      const result = await Promise.race([
+        getUrl(input.url),
+        timeoutPromise
+      ]).catch((e: any) => {
+        console.error(`[${new Date().toISOString()}] Library call failed or timed out. Error:`, e);
+        throw e;
       });
       
-      console.log("Downloader result:", JSON.stringify(result));
+      console.log(`[${new Date().toISOString()}] Library response received. Success: ${!!result}`);
+      if (result) {
+        console.log(`[${new Date().toISOString()}] Result keys: ${Object.keys(result).join(', ')}`);
+      }
 
       if (!result || (!result.url_list && !result.results)) {
         console.warn("No video URLs found in library response for:", input.url);
