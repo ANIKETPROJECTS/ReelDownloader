@@ -24,6 +24,10 @@ async function initDownloader() {
       instagramGetUrl = instagramGetUrlRaw.instagramGetUrl;
     } else if (instagramGetUrlRaw && typeof instagramGetUrlRaw.default === 'function') {
       instagramGetUrl = instagramGetUrlRaw.default;
+    } else if (typeof mod === 'function') {
+      instagramGetUrl = mod;
+    } else if (mod && typeof mod.instagramGetUrl === 'function') {
+      instagramGetUrl = mod.instagramGetUrl;
     } else {
       console.error("Could not find downloader function in module:", instagramGetUrlRaw);
       throw new Error("Downloader function not found");
@@ -96,7 +100,7 @@ export async function registerRoutes(
       const result = await getUrl(input.url).catch((e: any) => {
         console.error("Library call failed. Full error:", e);
         if (e.stack) console.error("Stack trace:", e.stack);
-        throw new Error(`Library error: ${e.message || e}`);
+        throw new Error(`Library error: ${e.message || (typeof e === 'string' ? e : JSON.stringify(e))}`);
       });
       
       console.log("Downloader result:", JSON.stringify(result));
@@ -141,7 +145,11 @@ export async function registerRoutes(
       }
       
       console.error("Error downloading reel:", err);
-      res.status(500).json({ message: "Internal server error. Failed to fetch the Reel." });
+      res.status(500).json({ 
+      success: false,
+      message: "Internal server error. Failed to fetch the Reel.",
+      error: err instanceof Error ? err.message : String(err)
+    });
     }
   });
 
