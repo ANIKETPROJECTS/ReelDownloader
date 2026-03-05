@@ -23,21 +23,19 @@ export function useDownloadReel() {
       if (!res.ok) {
         let errorData;
         try {
-          errorData = await res.json();
-          console.error("useDownloadReel: Error response data:", errorData);
+          const text = await res.text();
+          console.log("useDownloadReel: Raw error response text:", text);
+          errorData = JSON.parse(text);
+          console.error("useDownloadReel: Parsed error data:", errorData);
         } catch (e) {
-          console.error("useDownloadReel: Failed to parse error response JSON");
+          console.error("useDownloadReel: Failed to parse error response as JSON. Error:", e);
         }
 
-        if (res.status === 400 && errorData) {
-          const error = api.reels.download.responses[400].parse(errorData);
-          throw new Error(error.message);
+        if (errorData?.message) {
+          throw new Error(errorData.message);
         }
-        if (res.status === 500 && errorData) {
-          const error = api.reels.download.responses[500].parse(errorData);
-          throw new Error(error.message);
-        }
-        throw new Error(`Failed to process download request (Status: ${res.status})`);
+        
+        throw new Error(`Failed to process download request (Status: ${res.status}). ${errorData?.error || ''}`);
       }
 
       // 4. Parse successful response

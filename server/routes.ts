@@ -90,6 +90,8 @@ export async function registerRoutes(
 
   app.post(api.reels.download.path, async (req, res) => {
     try {
+      console.log(`[${new Date().toISOString()}] Received download request for URL: ${req.body?.url}`);
+      
       const input = api.reels.download.input.parse(req.body);
       
       console.log(`Processing Reel URL: ${input.url}`);
@@ -98,19 +100,23 @@ export async function registerRoutes(
       
       if (typeof getUrl !== 'function') {
         console.error("Downloader library is not a function. Value:", getUrl);
-        throw new Error("Downloader library initialization failed: not a function");
+        return res.status(500).json({
+          success: false,
+          message: "Downloader library initialization failed",
+          error: "Library is not a function"
+        });
       }
 
       console.log("Calling downloader with URL:", input.url);
       const result = await getUrl(input.url).catch((e: any) => {
         console.error("Library call failed. Full error:", e);
-        if (e.stack) console.error("Stack trace:", e.stack);
-        throw new Error(`Library error: ${e.message || (typeof e === 'string' ? e : JSON.stringify(e))}`);
+        throw new Error(`Library error: ${e.message || String(e)}`);
       });
       
       console.log("Downloader result:", JSON.stringify(result));
 
       if (!result || (!result.url_list && !result.results)) {
+        console.warn("No video URLs found in library response for:", input.url);
         return res.status(400).json({ 
           success: false, 
           message: "Could not find a downloadable video for this URL. Please ensure the account is public." 
@@ -142,19 +148,22 @@ export async function registerRoutes(
         message: "Reel processed successfully"
       });
     } catch (err) {
+      console.error("Error in /api/reels/download:", err);
+      
       if (err instanceof z.ZodError) {
         return res.status(400).json({
+          success: false,
           message: err.errors[0].message,
+          error: "Validation Error",
           field: err.errors[0].path.join('.'),
         });
       }
       
-      console.error("Error downloading reel:", err);
       res.status(500).json({ 
-      success: false,
-      message: "Internal server error. Failed to fetch the Reel.",
-      error: err instanceof Error ? err.message : String(err)
-    });
+        success: false,
+        message: "Internal server error. Failed to fetch the Reel.",
+        error: err instanceof Error ? err.message : String(err)
+      });
     }
   });
 
