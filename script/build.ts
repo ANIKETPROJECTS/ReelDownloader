@@ -50,7 +50,7 @@ async function buildAll() {
     platform: "node",
     bundle: true,
     format: "cjs",
-    outfile: "dist/index.js",
+    outfile: "dist/index.cjs",
     define: {
       "process.env.NODE_ENV": '"production"',
       "process.env.VERCEL": '"1"',
