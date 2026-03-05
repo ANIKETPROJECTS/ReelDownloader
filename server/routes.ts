@@ -202,62 +202,60 @@ import { api } from "../shared/routes.js";
 import { z } from "zod";
 import { Readable } from "stream";
 
+/* ---------------- GLOBAL EXPRESS LOGGER ---------------- */
+
+function attachLogger(app: Express) {
+  app.use((req, res, next) => {
+    console.log(`[EXPRESS] ${req.method} ${req.url}`);
+    next();
+  });
+}
+
+/* ---------------- DOWNLOADER LOADER ---------------- */
+
 let instagramGetUrl: any;
 
 async function initDownloader() {
   if (instagramGetUrl) return instagramGetUrl;
 
   try {
-    console.log("[DOWNLOADER] Attempting to import instagram-url-direct...");
+    console.log("Loading instagram-url-direct...");
 
     const mod: any = await import("instagram-url-direct");
 
-    console.log("[DOWNLOADER] Module keys:", Object.keys(mod || {}));
+    instagramGetUrl = mod?.default || mod?.instagramGetUrl || mod;
 
-    const candidate = mod?.default || mod?.instagramGetUrl || mod;
-
-    if (typeof candidate !== "function") {
-      console.error("[DOWNLOADER] No valid function export found");
+    if (typeof instagramGetUrl !== "function") {
       throw new Error("Downloader function not found in module");
     }
 
-    instagramGetUrl = candidate;
-
-    console.log("[DOWNLOADER] Downloader initialized successfully");
+    console.log("Downloader loaded successfully");
 
     return instagramGetUrl;
   } catch (err) {
-    console.error("[DOWNLOADER] Failed to import instagram-url-direct:", err);
+    console.error("Downloader import failed:", err);
     throw err;
   }
 }
+
+/* ---------------- REGISTER ROUTES ---------------- */
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express,
 ): Promise<Server> {
-  console.log("[ROUTES] Registering Express routes");
+  attachLogger(app);
 
-  /* GLOBAL REQUEST LOGGER */
-  app.use((req, res, next) => {
-    console.log(`[EXPRESS] ${req.method} ${req.url}`);
-    next();
-  });
+  /* ---------------- VIDEO PROXY ---------------- */
 
-  /* HEALTH CHECK */
-  app.get("/health", (req, res) => {
-    res.json({ status: "ok" });
-  });
-
-  /* VIDEO PROXY */
   app.get("/proxy", async (req, res) => {
     const videoUrl = req.query.url as string;
+
+    console.log("[PROXY] Requested URL:", videoUrl);
 
     if (!videoUrl) {
       return res.status(400).send("URL is required");
     }
-
-    console.log("[PROXY] Fetching video:", videoUrl);
 
     try {
       const response = await fetch(videoUrl, {
@@ -268,7 +266,7 @@ export async function registerRoutes(
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to fetch video: ${response.statusText}`);
+        throw new Error(`Proxy fetch failed: ${response.statusText}`);
       }
 
       const contentType = response.headers.get("content-type") || "video/mp4";
@@ -280,34 +278,45 @@ export async function registerRoutes(
       );
       res.setHeader("Access-Control-Allow-Origin", "*");
 
-      if (response.body) {
-        // @ts-ignore
-        const nodeStream = Readable.fromWeb(response.body);
-
-        nodeStream.on("error", (err) => {
-          console.error("[PROXY] Stream error:", err);
-        });
-
-        nodeStream.pipe(res);
-      } else {
-        res.status(500).json({
-          success: false,
-          message: "Empty response body",
-        });
+      if (!response.body) {
+        return res
+          .status(500)
+          .json({ success: false, message: "Empty response body" });
       }
-    } catch (error) {
-      console.error("[PROXY] Error:", error);
+
+      const nodeStream = Readable.fromWeb(response.body as any);
+
+      nodeStream.on("error", (err) => {
+        console.error("[PROXY STREAM ERROR]", err);
+        if (!res.headersSent) {
+          res.status(500).json({
+            success: false,
+            message: "Stream error",
+            error: err.message,
+          });
+        }
+      });
+
+      nodeStream.pipe(res);
+    } catch (err) {
+      console.error("[PROXY ERROR]", err);
 
       if (!res.headersSent) {
-        res.status(500).send("Failed to download video");
+        res.status(500).json({
+          success: false,
+          message: "Proxy download failed",
+          error: err instanceof Error ? err.message : String(err),
+        });
       }
     }
   });
 
-  /* REEL DOWNLOADER */
+  /* ---------------- REEL DOWNLOAD ---------------- */
+
   app.post("/reels/download", async (req, res) => {
     try {
-      console.log("[DOWNLOAD] Request body:", req.body);
+      console.log("===== DOWNLOAD REQUEST START =====");
+      console.log("Body:", req.body);
 
       if (!req.body) {
         return res.status(400).json({
@@ -318,14 +327,14 @@ export async function registerRoutes(
 
       const input = api.reels.download.input.parse(req.body);
 
-      console.log("[DOWNLOAD] URL:", input.url);
+      console.log("Validated URL:", input.url);
 
-      const getUrl = await initDownloader();
+      const downloader = await initDownloader();
 
-      console.log("[DOWNLOAD] Calling downloader...");
+      console.log("Downloader ready");
 
-      const result: any = await Promise.race([
-        getUrl(input.url),
+      const result = await Promise.race([
+        downloader(input.url),
         new Promise((_, reject) =>
           setTimeout(
             () => reject(new Error("Downloader timeout (15s)")),
@@ -334,7 +343,7 @@ export async function registerRoutes(
         ),
       ]);
 
-      console.log("[DOWNLOAD] Downloader result:", result);
+      console.log("Downloader response:", result);
 
       if (!result) {
         return res.status(400).json({
@@ -355,40 +364,47 @@ export async function registerRoutes(
       const videoUrl =
         typeof urlList[0] === "string" ? urlList[0] : urlList[0].url;
 
-      console.log("[DOWNLOAD] Video URL:", videoUrl);
+      console.log("Selected video URL:", videoUrl);
 
-      await storage.createDownload({
-        url: input.url,
-        status: "success",
-      });
+      try {
+        await storage.createDownload({
+          url: input.url,
+          status: "success",
+        });
+      } catch (dbErr) {
+        console.warn("DB logging failed:", dbErr);
+      }
 
-      return res.json({
+      res.json({
         success: true,
         videoUrl,
         message: "Reel processed successfully",
       });
-    } catch (err: any) {
-      console.error("[DOWNLOAD] Error:", err);
+
+      console.log("===== DOWNLOAD REQUEST END =====");
+    } catch (err) {
+      console.error("DOWNLOAD ERROR:", err);
 
       if (err instanceof z.ZodError) {
         return res.status(400).json({
           success: false,
           message: err.errors[0].message,
-          field: err.errors[0].path.join("."),
+          error: "Validation error",
         });
       }
 
-      return res.status(500).json({
+      res.status(500).json({
         success: false,
         message: "Internal server error",
-        error: err?.message || String(err),
+        error: err instanceof Error ? err.message : String(err),
       });
     }
   });
 
-  /* 404 FALLBACK */
+  /* ---------------- FALLBACK ROUTE ---------------- */
+
   app.use((req, res) => {
-    console.warn("[EXPRESS] Unmatched route:", req.method, req.url);
+    console.log("[EXPRESS] Unmatched route:", req.method, req.url);
 
     res.status(404).json({
       success: false,
