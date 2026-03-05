@@ -1,0 +1,83 @@
+13:48:23.186 Running build in Washington, D.C., USA (East) – iad1
+13:48:23.187 Build machine configuration: 2 cores, 8 GB
+13:48:23.324 Cloning github.com/ANIKETPROJECTS/ReelDownloader (Branch: main, Commit: 6f8fc14)
+13:48:25.452 Cloning completed: 2.128s
+13:48:25.590 Restored build cache from previous deployment (4PFMfdBchzKKFEg9kFFcKJGa6VrK)
+13:48:26.705 Running "vercel build"
+13:48:27.769 WARN! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+13:48:28.406 Installing dependencies...
+13:48:29.934 
+13:48:29.934 up to date in 1s
+13:48:29.934 
+13:48:29.935 79 packages are looking for funding
+13:48:29.935   run `npm fund` for details
+13:48:29.968 Running "npm run vercel-build"
+13:48:30.068 
+13:48:30.069 > rest-express@1.0.0 vercel-build
+13:48:30.069 > npm run build && cp dist/index.cjs server/index.js && mkdir -p public && cp -r dist/public/* public/
+13:48:30.069 
+13:48:30.172 
+13:48:30.172 > rest-express@1.0.0 build
+13:48:30.173 > npx tsx script/build.ts
+13:48:30.173 
+13:48:31.751 building client...
+13:48:31.870 [36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+13:48:32.195 transforming...
+13:48:36.657 [32m✓[39m 2044 modules transformed.
+13:48:37.019 rendering chunks...
+13:48:37.032 computing gzip size...
+13:48:37.052 [2m../dist/public/[22m[32mindex.html                                       [39m[1m[2m  2.18 kB[22m[1m[22m[2m │ gzip:   0.84 kB[22m
+13:48:37.052 [2m../dist/public/[22m[2massets/[22m[32mlightning_1772635445711-nXhH9Npq.png      [39m[1m[2m 11.27 kB[22m[1m[22m
+13:48:37.053 [2m../dist/public/[22m[2massets/[22m[32mvideo_1772635646433-BBo_F7yQ.png          [39m[1m[2m 11.49 kB[22m[1m[22m
+13:48:37.053 [2m../dist/public/[22m[2massets/[22m[32minsurance_1772635570218-BGOQjyf9.png      [39m[1m[2m 14.79 kB[22m[1m[22m
+13:48:37.053 [2m../dist/public/[22m[2massets/[22m[32mfacebook_(1)_1772634020519-ejnf6rkB.png   [39m[1m[2m 16.04 kB[22m[1m[22m
+13:48:37.053 [2m../dist/public/[22m[2massets/[22m[32mtwitter_1772634025574-DTBoECSh.png        [39m[1m[2m 17.45 kB[22m[1m[22m
+13:48:37.053 [2m../dist/public/[22m[2massets/[22m[32mprohibition_1772635526816-N3I5Ei0O.png    [39m[1m[2m 20.68 kB[22m[1m[22m
+13:48:37.054 [2m../dist/public/[22m[2massets/[22m[32minstagram_(1)_1772634012258-Dbq-n8qV.png  [39m[1m[2m 52.99 kB[22m[1m[22m
+13:48:37.054 [2m../dist/public/[22m[2massets/[22m[35mindex-nFPEQc4t.css                        [39m[1m[2m 93.92 kB[22m[1m[22m[2m │ gzip:  14.47 kB[22m
+13:48:37.054 [2m../dist/public/[22m[2massets/[22m[36mindex-D8rSCUkS.js                         [39m[1m[2m451.69 kB[22m[1m[22m[2m │ gzip: 141.19 kB[22m
+13:48:37.054 [32m✓ built in 4.90s[39m
+13:48:37.054 building server...
+13:48:37.235 
+13:48:37.235   dist/index.cjs  877.1kb
+13:48:37.235 
+13:48:37.235 ⚡ Done in 144ms
+13:48:38.785 Running "npm run vercel-build"
+13:48:38.885 
+13:48:38.886 > rest-express@1.0.0 vercel-build
+13:48:38.886 > npm run build && cp dist/index.cjs server/index.js && mkdir -p public && cp -r dist/public/* public/
+13:48:38.886 
+13:48:38.989 
+13:48:38.990 > rest-express@1.0.0 build
+13:48:38.990 > npx tsx script/build.ts
+13:48:38.990 
+13:48:40.148 building client...
+13:48:40.214 [36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+13:48:40.480 transforming...
+13:48:44.675 [32m✓[39m 2044 modules transformed.
+13:48:44.997 rendering chunks...
+13:48:45.036 computing gzip size...
+13:48:45.089 [2m../dist/public/[22m[32mindex.html                                       [39m[1m[2m  2.18 kB[22m[1m[22m[2m │ gzip:   0.84 kB[22m
+13:48:45.097 [2m../dist/public/[22m[2massets/[22m[32mlightning_1772635445711-nXhH9Npq.png      [39m[1m[2m 11.27 kB[22m[1m[22m
+13:48:45.098 [2m../dist/public/[22m[2massets/[22m[32mvideo_1772635646433-BBo_F7yQ.png          [39m[1m[2m 11.49 kB[22m[1m[22m
+13:48:45.098 [2m../dist/public/[22m[2massets/[22m[32minsurance_1772635570218-BGOQjyf9.png      [39m[1m[2m 14.79 kB[22m[1m[22m
+13:48:45.098 [2m../dist/public/[22m[2massets/[22m[32mfacebook_(1)_1772634020519-ejnf6rkB.png   [39m[1m[2m 16.04 kB[22m[1m[22m
+13:48:45.099 [2m../dist/public/[22m[2massets/[22m[32mtwitter_1772634025574-DTBoECSh.png        [39m[1m[2m 17.45 kB[22m[1m[22m
+13:48:45.099 [2m../dist/public/[22m[2massets/[22m[32mprohibition_1772635526816-N3I5Ei0O.png    [39m[1m[2m 20.68 kB[22m[1m[22m
+13:48:45.100 [2m../dist/public/[22m[2massets/[22m[32minstagram_(1)_1772634012258-Dbq-n8qV.png  [39m[1m[2m 52.99 kB[22m[1m[22m
+13:48:45.101 [2m../dist/public/[22m[2massets/[22m[35mindex-nFPEQc4t.css                        [39m[1m[2m 93.92 kB[22m[1m[22m[2m │ gzip:  14.47 kB[22m
+13:48:45.101 [2m../dist/public/[22m[2massets/[22m[36mindex-D8rSCUkS.js                         [39m[1m[2m451.69 kB[22m[1m[22m[2m │ gzip: 141.19 kB[22m
+13:48:45.102 [32m✓ built in 4.66s[39m
+13:48:45.102 building server...
+13:48:45.352 
+13:48:45.355   dist/index.cjs  877.1kb
+13:48:45.355 
+13:48:45.355 ⚡ Done in 209ms
+13:48:45.648 Using TypeScript 5.9.3 (local user-provided)
+13:48:49.992 server/routes.ts(25,64): error TS2339: Property 'default' does not exist on type 'typeof import("/vercel/path0/node_modules/instagram-url-direct/dist/types/instagram")'.
+13:48:49.993 server/routes.ts(26,44): error TS2339: Property 'default' does not exist on type 'typeof import("/vercel/path0/node_modules/instagram-url-direct/dist/types/instagram")'.
+13:48:49.993 
+13:48:50.081 server/vite.ts(22,91): error TS2554: Expected 1 arguments, but got 2.
+13:48:50.082 
+13:49:04.330 Build Completed in /vercel/output [36s]
+13:49:04.709 Deploying outputs...
