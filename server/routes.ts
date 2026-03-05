@@ -313,7 +313,7 @@ export async function registerRoutes(
 
   /* ---------------- REEL DOWNLOAD ---------------- */
 
-  app.post("/reels/download", async (req, res) => {
+  app.post("/api/reels/download", async (req, res) => {
     try {
       console.log("===== DOWNLOAD REQUEST START =====");
       console.log("Body:", req.body);

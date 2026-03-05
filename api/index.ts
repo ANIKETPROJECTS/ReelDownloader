@@ -6,9 +6,9 @@ export default async function handler(req: any, res: any) {
   try {
     console.log("===== VERCEL FUNCTION START =====");
     console.log("Method:", req.method);
-    console.log("Original URL:", req.url);
+    console.log("URL:", req.url);
 
-    // initialize express only once
+    // Initialize Express only once
     if (!server) {
       console.log("Initializing Express app...");
 
@@ -21,33 +21,32 @@ export default async function handler(req: any, res: any) {
       }
 
       server = serverless(app);
+
       console.log("Express server initialized");
     }
 
-    // remove /api prefix so express routes work
-    if (req.url.startsWith("/api")) {
-      req.url = req.url.replace(/^\/api/, "") || "/";
-    }
+    // DO NOT rewrite URL
+    // serverless-http already handles routing correctly
 
-    console.log("Rewritten URL:", req.url);
-
-    const result = await server(req, res);
+    const response = await server(req, res);
 
     console.log("Request handled successfully");
     console.log("===== VERCEL FUNCTION END =====");
 
-    return result;
+    return response;
   } catch (err: any) {
     console.error("Serverless handler error:", err);
 
-    res.statusCode = 500;
-    res.setHeader("Content-Type", "application/json");
+    if (!res.headersSent) {
+      res.statusCode = 500;
+      res.setHeader("Content-Type", "application/json");
 
-    res.end(
-      JSON.stringify({
-        error: "Server error",
-        message: err?.message || "Unknown error",
-      }),
-    );
+      res.end(
+        JSON.stringify({
+          error: "Server error",
+          message: err?.message || "Unknown error",
+        }),
+      );
+    }
   }
 }
