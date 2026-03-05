@@ -1,11 +1,9 @@
 import serverless from "serverless-http";
-import { createRequire } from "module";
 
-const require = createRequire(import.meta.url);
-const expressApp = require("../server/index.js");
+export default async function handler(req: any, res: any) {
+  const mod = await import("../server/index.js");
+  const app = mod.default || mod.app || mod;
 
-const handler = serverless(expressApp);
-
-export default async function (req: any, res: any) {
-  return handler(req, res);
+  const server = serverless(app);
+  return server(req, res);
 }
