@@ -14,7 +14,7 @@ async function initDownloader() {
     console.log("Attempting to import instagram-url-direct...");
     // @ts-ignore
     const mod = await import('instagram-url-direct');
-    const instagramGetUrlRaw = mod.default || mod;
+    const instagramGetUrlRaw = mod && (mod.default || mod);
     console.log("Import successful, type:", typeof instagramGetUrlRaw);
     
     // Handle different export patterns
@@ -22,8 +22,6 @@ async function initDownloader() {
       instagramGetUrl = instagramGetUrlRaw;
     } else if (instagramGetUrlRaw && typeof instagramGetUrlRaw.instagramGetUrl === 'function') {
       instagramGetUrl = instagramGetUrlRaw.instagramGetUrl;
-    } else if (instagramGetUrlRaw && typeof instagramGetUrlRaw.default === 'function') {
-      instagramGetUrl = instagramGetUrlRaw.default;
     } else if (typeof mod === 'function') {
       instagramGetUrl = mod;
     } else if (mod && typeof mod.instagramGetUrl === 'function') {
