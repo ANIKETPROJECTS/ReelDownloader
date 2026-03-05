@@ -18,16 +18,16 @@ async function initDownloader() {
     console.log("Import successful, type:", typeof instagramGetUrlRaw);
     
     // Handle different export patterns
-    if (typeof instagramGetUrlRaw === 'function') {
-      instagramGetUrl = instagramGetUrlRaw;
-    } else if (instagramGetUrlRaw && typeof instagramGetUrlRaw.instagramGetUrl === 'function') {
-      instagramGetUrl = instagramGetUrlRaw.instagramGetUrl;
-    } else if (typeof mod === 'function') {
+    if (typeof mod === 'function') {
       instagramGetUrl = mod;
+    } else if (mod && typeof mod.default === 'function') {
+      instagramGetUrl = mod.default;
     } else if (mod && typeof mod.instagramGetUrl === 'function') {
       instagramGetUrl = mod.instagramGetUrl;
+    } else if (instagramGetUrlRaw && typeof instagramGetUrlRaw === 'function') {
+      instagramGetUrl = instagramGetUrlRaw;
     } else {
-      console.error("Could not find downloader function in module:", instagramGetUrlRaw);
+      console.error("Could not find downloader function in module. Module keys:", Object.keys(mod || {}));
       throw new Error("Downloader function not found");
     }
     

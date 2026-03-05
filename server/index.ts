@@ -1,14 +1,13 @@
+// server/index.ts
 import express, { type Request, Response, NextFunction } from "express";
-// Database URI mention removed as requested, using in-memory storage.
 import { registerRoutes } from "./routes.js";
 import { createServer } from "http";
 
 const app = express();
-const httpServer = createServer(app);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Detailed logging for debugging in production
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -35,6 +34,7 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  const httpServer = createServer(app);
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
@@ -56,7 +56,7 @@ app.use((req, res, next) => {
   }
 
   const port = parseInt(process.env.PORT || "5000", 10);
-  if (!process.env.VERCEL && !process.env.NETLIFY) {
+  if (!process.env.VERCEL && !process.env.NETLIFY && process.env.NODE_ENV !== "test") {
     httpServer.listen(port, "0.0.0.0", () => {
       console.log(`${new Date().toLocaleTimeString()} [express] serving on port ${port}`);
     });
